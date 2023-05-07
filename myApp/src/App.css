@@ -1,0 +1,98 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.nav {
+  text-align: center;
+  padding-bottom: 0%;
+}
+
+.nav .header {
+  padding-top: 20px;
+  padding-left: 0%;
+}
+
+.myAppointments .header {
+  text-align: center;
+  padding-left: 0%;
+}
+
+.nav-bars {
+  display: inline-block;
+  text-align: center;
+  list-style-type: none;
+}
+
+.arrow {
+  width: 25px;
+  display: flex;
+  padding: 5% 0 0 5%;
+}
+
+.header, .form-records, .table-medical-records, .table-records {
+  padding-left: 20%;
+
+}
+
+.table-medical-records,
+.table-records {
+  padding-right: 30%;
+}
+
+.table-medical-records Input {
+  border: 0px solid #dddddd;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.table-medical-records .button, .table-records .button {
+  padding-left: 45%; 
+}
+
+.form-records .button {
+  padding-top: 10px;
+}
+
+.form-records, .nav p {
+  color: #737373;
+}
+
+.logout .button Button {
+  margin-bottom: 20px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 65%;
+  
+}
+
+.logout {
+  text-align: center;
+}
+
+.logout p {
+  font-size: 50px;
+  height: 100px;
+  padding-top: 20px;
+}
+
+
+.footer {
+  display: flex;
+  column-gap: 27em;
+  font-size: small;
+  text-align: left;
+
+}
+
+Footer {
+  border-bottom: 10px solid #4c6272;
+}
+
+
