@@ -1,18 +1,17 @@
-import { ArrowLeft, Table } from 'govuk-react'
+import { TopNav, Table, Link, H3 } from 'govuk-react'
 import React, {useState, useEffect} from 'react'
 import MyFooter from '../../Components/MyFooter'
-import MyHeader from '../../Components/MyHeader'
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 
 export default function MyAppointments() {
 
   const [appointments,setAppointments] = useState([]);
+  const [inputs,setInputs] = useState([]);
 
-    
-
+  const {docID} = useParams();
 
     useEffect(()=>
     {
@@ -23,32 +22,40 @@ export default function MyAppointments() {
 
     function getAppointments() {
 
-
-        axios.get("http://localhost:80/DB/appointment.php").then(function(response) {
+        axios.get(`http://localhost:80/DB/appointment.php/${docID}`).then(function(response) {
             setAppointments(response.data);
-            console.log(response.data);
         });
+        
     }
 
   return (
     <div className='myAppointments'>
-      <MyHeader value="Upcoming appointments"/>
-      <Link to="/Doctor"><ArrowLeft className='arrow'/></Link>
-      <Table className='table'>
-        <tr>
-          <th>Appointment ID</th>
-          <th>Date & Time</th>
-          <th>NHS number</th>
-        </tr>
+      <TopNav>
+        <div className='navs' >
+          <Link className="navlinks" href ={`/FindPatient/${docID}`} >Patient records</Link>
+          <Link className="navlinks" href ={`/MyAppointments/${docID}`} >Appointments</Link>
+          <Link className="navlinks" href ="/Logout" >Log out</Link>
+        </div>
+        
+        </TopNav>
+
+
+        <Link href={`/Doctor/${docID}`} className='homeNav' style={{color:"black"}}>Home</Link>
+        <hr/>
+        <div className='appoint'>
+          <H3>Upcoming appointments</H3>
+          
         {appointments.map((appointments,key)=>
-                        <tr key={key}>
-                                <td>{appointments.appId}</td>
-                                <td>{appointments.date_booked}</td>
-                                <td>{appointments.NHSnumber}</td>
-                        </tr>
+                        <div key={key}>
+                                <div className='info'>Patient name: </div>{appointments.Forename} {appointments.Surname}<br/><br/>
+                                <div className='info'>NHS number:</div>{appointments.NHSNumber}<br/><br/>
+                                <div className='info'>Date & time:</div>{appointments.date} at {appointments.time}<br/><br/>
+                                <br/><br/><hr style={{width:"78%"}}/><br/><br/>
+                        </div>
                     )}
-      </Table>
-      <div  style={{borderTop : '10px solid #1d70b8',bottom:"0", position:"absolute",width:"100%"}}>
+      
+      </div>
+      <div  style={{borderTop : '10px solid #1d70b8',bottom:"0",width:"100%", marginTop:"17%"}}>
         <MyFooter/>
       </div>
     </div>
